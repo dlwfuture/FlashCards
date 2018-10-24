@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, View, StatusBar } from 'react-native'
-import { createStackNavigator, createTabNavigator } from 'react-navigation'
+import { createStackNavigator, createMaterialTopTabNavigator } from 'react-navigation'
 import { Constants } from 'expo'
 import { FontAwesome, Ionicons } from '@expo/vector-icons'
 import DeckList from './components/DeckList'
@@ -15,7 +15,7 @@ function DeckStatusBar({ backgroundColor, ...props }){
   )
 }
 
-const Tabs = createTabNavigator(
+const Tabs = createMaterialTopTabNavigator(
   {
     "DECKS": DeckList,
     "NEW DECK": DeckAdd,
