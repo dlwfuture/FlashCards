@@ -1,7 +1,17 @@
 import React from 'react'
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native'
+import { connect } from 'react-redux'
+import { AddDeck, GetDecks } from '../actions/decks'
 
-export default class DeckAdd extends React.Component {
+class DeckAdd extends React.Component {
+  state = {
+    title: null,
+  }
+
+  saveDeck = () => {
+    this.props.AddDeck(this.state.title)
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -10,11 +20,14 @@ export default class DeckAdd extends React.Component {
           <TextInput
             placeholder={'Deck Title'}
             style={styles.inputText}
-            value={'test'}
+            value={this.state.title}
+            onChangeText={(text) => this.setState({title: text})}
           />
         </View>
         <TouchableOpacity
-            style = {styles.submitButton}>
+            style = {styles.submitButton}
+            onPress={this.saveDeck}
+        >
             <Text style = {styles.submitButtonText}>Submit</Text>
         </TouchableOpacity>
       </View>
@@ -43,10 +56,11 @@ const styles = StyleSheet.create({
   submitButton: {
     backgroundColor: '#000',
     padding: 10,
+    paddingTop: 15,
     margin: 15,
     marginLeft: 100,
     marginRight: 100,
-    height: 40,
+    height: 50,
     borderRadius: 5,
   },
   submitButtonText: {
@@ -56,3 +70,19 @@ const styles = StyleSheet.create({
     textAlignVertical: 'center',
   }
 })
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    AddDeck: (title) => dispatch(AddDeck(title)),
+    GetDecks: () => dispatch(GetDecks()),
+  }
+}
+
+const mapStateToProps = ({deck}) => ({
+  deck: deck,
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DeckAdd)

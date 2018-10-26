@@ -1,47 +1,32 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { StyleSheet, Text, View, FlatList, Platform } from 'react-native'
+import { GetDecks } from '../actions/decks'
 
-export default class DeckList extends React.Component {
-  deck = {
-    React: {
-      title: 'React',
-      questions: [
-        {
-          question: 'What is React?',
-          answer: 'A library for managing user interfaces'
-        },
-        {
-          question: 'Where do you make Ajax requests in React?',
-          answer: 'The componentDidMount lifecycle event'
-        }
-      ]
-    },
-    JavaScript: {
-      title: 'JavaScript',
-      questions: [
-        {
-          question: 'What is a closure?',
-          answer: 'The combination of a function and the lexical environment within which that function was declared.'
-        }
-      ]
-    }
+class DeckList extends React.Component {
+  componentDidMount() {
+    this.props.GetDecks()
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <FlatList
-          data={Object.keys(this.deck).map((id) => this.deck[id])}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({item}) => 
-            (
-              <View style={styles.item}>
-                <Text style={styles.deckTitle}>{item.title}</Text>
-                <Text style={styles.deckText}>{item.questions.length} cards</Text>
-              </View>
-            )
-          }
-        />
+        {
+          this.props.decks && (
+            <FlatList
+              data={Object.keys(this.props.decks).map((id) => this.props.decks[id])}
+              keyExtractor={(item, index) => index.toString()}
+              renderItem={({item}) => 
+                (
+                  <View style={styles.item}>
+                    <Text style={styles.deckTitle}>{item.title && item.title}</Text>
+                    <Text style={styles.deckText}>{item.questions && item.questions.length} cards</Text>
+                  </View>
+                )
+              }
+            />
+          )
+        }
       </View>
     )
   }
@@ -86,3 +71,18 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
 })
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+      GetDecks: () => dispatch(GetDecks()),
+  }
+}
+
+const mapStateToProps = ({decks}) => ({
+  decks: decks.decks,
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DeckList)

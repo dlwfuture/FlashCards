@@ -1,8 +1,15 @@
 import React from 'react'
 import { StyleSheet, View, StatusBar } from 'react-native'
+
+import { createStore, applyMiddleware, compose } from 'redux'
+import { Provider, connect } from 'react-redux'
+import thunk from 'redux-thunk'
+import logger from 'redux-logger'
+
 import { createStackNavigator, createMaterialTopTabNavigator } from 'react-navigation'
 import { Constants } from 'expo'
 import { FontAwesome, Ionicons } from '@expo/vector-icons'
+import reducer from './reducers/App'
 import DeckList from './components/DeckList'
 import DeckDetail from './components/DeckDetail'
 import DeckAdd from './components/DeckAdd'
@@ -58,13 +65,22 @@ const MainNavigator = createStackNavigator({
   }
 })
 
+const store = createStore(
+  reducer,
+  compose(
+    applyMiddleware(thunk, logger)
+  )
+)
+
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <DeckStatusBar backgroundColor={'#000'} barStyle='light-content'/>
-        <MainNavigator/>
-      </View>
+      <Provider store={store}>
+        <View style={styles.container}>
+          <DeckStatusBar backgroundColor={'#000'} barStyle='light-content'/>
+          <MainNavigator/>
+        </View>
+      </Provider>
     )
   }
 }
