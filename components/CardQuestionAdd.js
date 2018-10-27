@@ -5,7 +5,7 @@ import { NavigationActions } from 'react-navigation'
 import { AddCard } from '../actions/cards'
 
 class CardQuestionAdd extends React.Component {
-  static navigationOptions = ({navigation}) => {
+  static navigationOptions = () => {
     return {
         title: 'Add Card'
     }
