@@ -1,11 +1,18 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { StyleSheet, Text, View, FlatList, Platform } from 'react-native'
+import { StyleSheet, Text, View, FlatList, Platform, TouchableOpacity } from 'react-native'
 import { GetDecks } from '../actions/decks'
 
 class DeckList extends React.Component {
   componentDidMount() {
     this.props.GetDecks()
+  }
+
+  goToDeckDetail = (id) => {
+    this.props.navigation.navigate(
+        'DeckDetail',
+        { DeckId: id }
+    )
   }
 
   render() {
@@ -18,13 +25,22 @@ class DeckList extends React.Component {
               keyExtractor={(item, index) => index.toString()}
               renderItem={({item}) => 
                 (
-                  <View style={styles.item}>
-                    <Text style={styles.deckTitle}>{item.title && item.title}</Text>
-                    <Text style={styles.deckText}>{item.questions && item.questions.length} cards</Text>
-                  </View>
+                  <TouchableOpacity onPress={() => {item.title && this.goToDeckDetail(item.title)}}>
+                    <View style={styles.item}>
+                      <Text style={styles.deckTitle}>{item.title && item.title}</Text>
+                      <Text style={styles.deckText}>{item.questions && item.questions.length} cards</Text>
+                    </View>
+                  </TouchableOpacity>
                 )
               }
             />
+          )
+        }
+        {
+          !this.props.decks && (
+            <Text style={styles.noDataText}>
+              No decks to show
+            </Text>
           )
         }
       </View>

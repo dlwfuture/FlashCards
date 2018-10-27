@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View, StatusBar } from 'react-native'
+import { StyleSheet, View, StatusBar, Text } from 'react-native'
 
 import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider, connect } from 'react-redux'
@@ -60,7 +60,7 @@ const MainNavigator = createStackNavigator({
       headerTintColor: '#fff',
       headerStyle: {
         backgroundColor: '#000',
-      }
+      },
     }  
   }
 })

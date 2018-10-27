@@ -9,6 +9,10 @@ class DeckAdd extends React.Component {
   }
 
   saveDeck = () => {
+    if (!this.state.title || !this.state.title.length){
+      alert('Title is a mandatory field')
+      return
+    }
     this.props.AddDeck(this.state.title)
   }
 
