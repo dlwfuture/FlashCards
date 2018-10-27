@@ -1,0 +1,18 @@
+## FlashCards Project
+This is a project for React Nanodegree Course and was created using [create-react-nativa-app].
+The application is related to FlashCards where you create questions, answers and try your knowledge in the Quiz.
+
+## Building the Project
+
+It uses yarn for building the project and running it.
+To easily build you need to prompt 2 commands:
+* yarn install
+  >This will install all the project dependencies
+* expo start
+  >This will build and start the project
+
+## Todo
+* Cover testing in components
+
+#Should work on Android and IOS
+This application should work on Android and IOS, but it was only tested on Android.
