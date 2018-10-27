@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Dimensions } from 'react-native'
 import { GetDeck } from '../actions/decks'
 
 class DeckDetail extends React.Component {
@@ -24,16 +24,16 @@ class DeckDetail extends React.Component {
         {
           deck && (
             <View>
-              <View style={styles.item}>
+              <View style={styles.deckHeader}>
                 <Text style={styles.deckTitle}>{deck.title && deck.title}</Text>
                 <Text style={styles.deckText}>{deck.questions && deck.questions.length} cards</Text>
               </View>
-              <View>
-                <TouchableOpacity style={styles.whiteButton}>
-                    <Text style = {styles.submitButtonText}>Add Card</Text>
+              <View style={styles.deckBottom}>
+                <TouchableOpacity style={[styles.button, {backgroundColor: '#fff'}]} onPress={() => {this.props.navigation.navigate('CardQuestionAdd',{ DeckId: deck.title })}}>
+                    <Text style={[styles.buttonText, {color: '#000'}]}>Add Card</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.blackButton}>
-                    <Text style = {styles.submitButtonText}>Start Quiz</Text>
+                <TouchableOpacity style={[styles.button, {backgroundColor: '#000'}]}>
+                    <Text style={[styles.buttonText, {color: '#fff'}]}>Start Quiz</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -55,48 +55,43 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    justifyContent: 'space-between',
   },
-  item: {
+  deckHeader: {
     padding: 20,
-    height: 160,
+    height: (Dimensions.get('window').height / 3) * 1.5,
     marginLeft: 1,
     marginRight: 1,
     justifyContent: 'center',
-},
+    alignItems: 'center',
+  },
+  deckBottom: {
+    justifyContent: 'flex-start',
+    height: (Dimensions.get('window').height / 3),
+  },
   deckTitle: {
     color: 'black',
     textAlign: 'center',
-    fontSize: 20,
+    fontSize: 45,
   },
   deckText: {
     textAlign: 'center',
     color: '#666',
-    fontSize: 15,
+    fontSize: 25,
   },
-  blackButton: {
-    backgroundColor: '#000',
-    padding: 10,
-    paddingTop: 15,
-    margin: 15,
-    marginLeft: 100,
-    marginRight: 100,
-    height: 50,
+  button: {
+    padding: 20,
+    margin: 10,
+    marginLeft: 60,
+    marginRight: 60,
     borderRadius: 5,
-    borderWidth: 1,
-    borderColor: '#000',
+    borderWidth: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  whiteButton: {
-    backgroundColor: '#fff',
-    padding: 10,
-    paddingTop: 15,
-    margin: 15,
-    marginLeft: 100,
-    marginRight: 100,
-    height: 50,
-    borderRadius: 5,
-    borderWidth: 1,
-    borderColor: '#000',
-  },
+  buttonText: {
+    fontSize: 20,
+  }
 })
 
 const mapDispatchToProps = (dispatch) => {

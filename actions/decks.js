@@ -44,7 +44,6 @@ export function AddDeck(title) {
         ))
         .catch(error => {
             console.warn(error)
-            GetDecks()
         })
     }
 }

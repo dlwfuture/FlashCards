@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
   deckText: {
     textAlign: 'center',
     color: '#666',
-    fontSize: 15,
+    fontSize: 13,
   },
 })
 

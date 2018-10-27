@@ -23,6 +23,7 @@ export function saveDeckTitle (title) {
                 questions: []
             }
             AsyncStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(decks))
+            return title
         })
 }
 
@@ -33,6 +34,7 @@ export function addCardToDeck (title, card) {
             if (decks[title]) {
                 decks[title].questions.push(card)
                 AsyncStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(decks))
+                return title
             }
         })
 }

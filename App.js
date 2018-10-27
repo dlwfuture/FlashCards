@@ -5,14 +5,13 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider, connect } from 'react-redux'
 import thunk from 'redux-thunk'
 import logger from 'redux-logger'
-
 import { createStackNavigator, createMaterialTopTabNavigator } from 'react-navigation'
 import { Constants } from 'expo'
-import { FontAwesome, Ionicons } from '@expo/vector-icons'
 import reducer from './reducers/App'
 import DeckList from './components/DeckList'
 import DeckDetail from './components/DeckDetail'
 import DeckAdd from './components/DeckAdd'
+import CardQuestionAdd from './components/CardQuestionAdd'
 
 function DeckStatusBar({ backgroundColor, ...props }){
   return (
@@ -56,6 +55,15 @@ const MainNavigator = createStackNavigator({
   },
   DeckDetail: {
     screen: DeckDetail,
+    navigationOptions: {
+      headerTintColor: '#fff',
+      headerStyle: {
+        backgroundColor: '#000',
+      },
+    }  
+  },
+  CardQuestionAdd: {
+    screen: CardQuestionAdd,
     navigationOptions: {
       headerTintColor: '#fff',
       headerStyle: {
