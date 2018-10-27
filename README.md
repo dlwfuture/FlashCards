@@ -8,7 +8,7 @@ It uses yarn for building the project and running it.
 To easily build you need to prompt 2 commands:
 * yarn install
   >This will install all the project dependencies
-* expo start
+* yarn start
   >This will build and start the project
 
 ## Todo
