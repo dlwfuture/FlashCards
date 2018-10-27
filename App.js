@@ -12,6 +12,8 @@ import DeckList from './components/DeckList'
 import DeckDetail from './components/DeckDetail'
 import DeckAdd from './components/DeckAdd'
 import CardQuestionAdd from './components/CardQuestionAdd'
+import CardQuestion from './components/CardQuestion'
+import CardQuestionResult from './components/CardQuestionResult'
 
 function DeckStatusBar({ backgroundColor, ...props }){
   return (
@@ -69,7 +71,25 @@ const MainNavigator = createStackNavigator({
       headerStyle: {
         backgroundColor: '#000',
       },
-    }  
+    }
+  },
+  CardQuestion: {
+    screen: CardQuestion,
+    navigationOptions: {
+      headerTintColor: '#fff',
+      headerStyle: {
+        backgroundColor: '#000',
+      },
+    }
+  },
+  CardQuestionResult: {
+    screen: CardQuestionResult,
+    navigationOptions: {
+      headerTintColor: '#fff',
+      headerStyle: {
+        backgroundColor: '#000',
+      },
+    }
   }
 })
 

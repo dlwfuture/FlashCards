@@ -33,7 +33,7 @@ class DeckDetail extends React.Component {
                     <Text style={[styles.buttonText, {color: '#000'}]}>Add Card</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={[styles.button, {backgroundColor: '#000'}]}>
-                    <Text style={[styles.buttonText, {color: '#fff'}]}>Start Quiz</Text>
+                    <Text style={[styles.buttonText, {color: '#fff'}]} onPress={() => {this.props.navigation.navigate('CardQuestion')}}>Start Quiz</Text>
                 </TouchableOpacity>
               </View>
             </View>
