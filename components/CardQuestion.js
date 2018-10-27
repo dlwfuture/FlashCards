@@ -80,6 +80,7 @@ class Question extends React.Component {
 
     const { deck } = this.props
     const question = deck.questions ? deck.questions[currentQuestion - 1] : null
+    const isLastQuestion = this.state.currentQuestion === this.state.totalQuestions
 
     return (
       <View style={styles.container}>
@@ -96,7 +97,7 @@ class Question extends React.Component {
                   <View style={styles.questionContent}>
                     <Text style={styles.questionText}>{question.question}</Text>
                     <TouchableOpacity onPress={this.goToAnswer}>
-                      <Text style={styles.linkButton}>Answer</Text>
+                      <Text style={styles.linkButton}>Show Answer</Text>
                     </TouchableOpacity>
                   </View>
                 ) 
@@ -109,7 +110,7 @@ class Question extends React.Component {
                       {
                         isQuestionAnswered && (
                           <TouchableOpacity onPress={this.goToNextQuestion}>
-                            <Text style={styles.linkButton}>Question</Text>
+                            <Text style={styles.linkButton}>{isLastQuestion ? 'Show Score' : 'Next Question'}</Text>
                           </TouchableOpacity>
                         )
                       }

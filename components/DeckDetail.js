@@ -19,6 +19,7 @@ class DeckDetail extends React.Component {
 
   render() {
     const { deck } = this.props
+    const deckContainsQuestions = deck && deck.questions && deck.questions.length
     return (
       <View style={styles.container}>
         {
@@ -32,8 +33,8 @@ class DeckDetail extends React.Component {
                 <TouchableOpacity style={[styles.button, {backgroundColor: '#fff'}]} onPress={() => {this.props.navigation.navigate('CardQuestionAdd',{ DeckId: deck.title })}}>
                     <Text style={[styles.buttonText, {color: '#000'}]}>Add Card</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={[styles.button, {backgroundColor: '#000'}]}>
-                    <Text style={[styles.buttonText, {color: '#fff'}]} onPress={() => {this.props.navigation.navigate('CardQuestion')}}>Start Quiz</Text>
+                <TouchableOpacity style={[styles.button, {backgroundColor: deckContainsQuestions ? '#000' : '#ddd'}]}>
+                    <Text style={[styles.buttonText, {color: '#fff'}]} onPress={() => {deckContainsQuestions && this.props.navigation.navigate('CardQuestion')}}>Start Quiz</Text>
                 </TouchableOpacity>
               </View>
             </View>

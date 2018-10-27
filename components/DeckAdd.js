@@ -14,6 +14,7 @@ class DeckAdd extends React.Component {
       return
     }
     this.props.AddDeck(this.state.title)
+    this.props.navigation.navigate('DeckDetail',{ DeckId: this.state.title })
   }
 
   render() {
