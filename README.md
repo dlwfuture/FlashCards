@@ -14,4 +14,4 @@ To easily build you need to prompt 2 commands:
 ## Todo
 * Cover testing in components
 
-#SThis application should work on Android, since it can't be tested at IOS.
+#This application should work on Android, since it can't be tested at IOS.
