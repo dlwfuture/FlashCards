@@ -16,6 +16,13 @@ class CardQuestionAdd extends React.Component {
     cardAnswer: null,
   }
 
+  clearScreen = () => {
+    this.setState({
+      cardQuestion: null,
+      cardAnswer: null,
+    })
+  }
+
   isValidCard = () => {
     if (!this.state.cardQuestion || !this.state.cardQuestion.length) {
       alert('Question is a mandatory field!')
@@ -40,6 +47,7 @@ class CardQuestionAdd extends React.Component {
         answer: this.state.cardAnswer,
       })
       this.toHome()
+      this.clearScreen()
     }
   }
 

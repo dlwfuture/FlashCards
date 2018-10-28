@@ -8,12 +8,19 @@ class DeckAdd extends React.Component {
     title: null,
   }
 
+  clearScreen = () => {
+    this.setState({
+      title: null,
+    })
+  }
+
   saveDeck = () => {
     if (!this.state.title || !this.state.title.length){
       alert('Title is a mandatory field')
       return
     }
     this.props.AddDeck(this.state.title)
+    this.clearScreen()
     this.props.navigation.navigate('DeckDetail',{ DeckId: this.state.title })
   }
 
