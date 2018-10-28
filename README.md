@@ -15,4 +15,4 @@ To easily build you need to prompt 2 commands:
 * Cover testing in components
 
 #Should work on Android and IOS
-This application should work on Android and IOS, but it was only tested on Android.
+This application should work on Android, since it can't be tested at IOS.
