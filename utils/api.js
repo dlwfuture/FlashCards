@@ -2,7 +2,7 @@ import { AsyncStorage } from 'react-native'
 import { Permissions, Notifications } from 'expo'
 import uuidv1 from 'uuid/v1'
 
-const LOCAL_STORAGE_KEY = 'FlashCardsLocal'
+const LOCAL_STORAGE_KEY = 'FlashCardsLocal123321'
 const NOTIFICATION_KEY = 'FlashCardsNotification'
 
 export function getDecks () {
@@ -57,12 +57,16 @@ function createNotification() {
     }
   }
 
+export function containsLocalNotification() {
+  return AsyncStorage.getItem(NOTIFICATION_KEY)
+    .then(data => JSON.parse(data) !== null)
+}
+
 export function setLocalNotification() {
     AsyncStorage.getItem(NOTIFICATION_KEY)
       .then(data => JSON.parse(data))
-      .then((data) => {
-        if (data === null) {
-          Permissions.askAsync(Permissions.NOTIFICATIONS)
+      .then(() => {
+        Permissions.askAsync(Permissions.NOTIFICATIONS)
             .then(({status}) => {
               if (status === 'granted'){
                 Notifications.cancelAllScheduledNotificationsAsync
@@ -82,6 +86,5 @@ export function setLocalNotification() {
                 AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true))
               }
             })
-        }
       })
   }

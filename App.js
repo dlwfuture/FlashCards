@@ -8,6 +8,7 @@ import logger from 'redux-logger'
 import { createStackNavigator, createMaterialTopTabNavigator } from 'react-navigation'
 import { Constants } from 'expo'
 import reducer from './reducers/App'
+import { containsLocalNotification, setLocalNotification } from './utils/api'
 import DeckList from './components/DeckList'
 import DeckDetail from './components/DeckDetail'
 import DeckAdd from './components/DeckAdd'
@@ -101,6 +102,12 @@ const store = createStore(
 )
 
 export default class App extends React.Component {
+  componentDidMount() {
+    if (!containsLocalNotification()){
+      setLocalNotification()
+    }
+  }
+
   render() {
     return (
       <Provider store={store}>
