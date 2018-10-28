@@ -14,4 +14,4 @@ To easily build you need to prompt 2 commands:
 ## Todo
 * Cover testing in components
 
-#This application should work on Android, it can work on iOS, but it wasn't tested.
+#This application should only be tested on Android, it will not work on iOS.
