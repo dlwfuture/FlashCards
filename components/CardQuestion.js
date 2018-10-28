@@ -1,6 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, Dimensions } from 'react-native'
 import { connect } from 'react-redux'
+import { setLocalNotification } from '../utils/api'
 
 class Question extends React.Component {
   static navigationOptions = () => {
@@ -18,10 +19,19 @@ class Question extends React.Component {
     totalWrong: 0,
   }
 
-  componentDidMount() {
+  refreshScreen = () => {
     this.setState({
-      totalQuestions: this.props.deck.questions.length
+      totalQuestions: this.props.deck && this.props.deck.questions ? this.props.deck.questions.length : 0,
+      currentQuestion: 1,
+      showAnswer: false,
+      isQuestionAnswered: false,
+      totalCorrect: 0,
+      totalWrong: 0
     })
+  }
+
+  componentDidMount() {
+    this.refreshScreen()
   }
 
   correctAnswer = () => {
@@ -59,12 +69,16 @@ class Question extends React.Component {
       }))
     }
     else {
+      setLocalNotification()
+      const { totalCorrect, totalQuestions } = this.state
+      const deckTitle = this.props.deck.title
+      this.refreshScreen()
       this.props.navigation.navigate(
         'CardQuestionResult',
         { 
-          TotalCorrect: this.state.totalCorrect,
-          TotalQuestions: this.state.totalQuestions,
-          DeckId: this.props.deck.title
+          TotalCorrect: totalCorrect,
+          TotalQuestions: totalQuestions,
+          DeckId: deckTitle
         }
       )
     }
@@ -158,7 +172,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   bottomButtonHolder: {
-    margin: 10,
+    marginBottom: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   linkButton: {
     color: '#f00',
@@ -166,13 +182,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   button: {
-    padding: 20,
-    margin: 10,
-    marginLeft: 60,
-    marginRight: 60,
+    width: Dimensions.get('window').width * 0.7,
+    height: 60,
     borderRadius: 5,
     justifyContent: 'center',
     alignItems: 'center',
+    marginBottom: 10,
   },
   buttonText: {
     fontSize: 20,

@@ -36,7 +36,7 @@ export default class CardQuestionResult extends React.Component {
         return (
             <View style={styles.container}>
                 <Text style={styles.title}>{`You scored ${totalCorrect} of ${totalQuestions}`}</Text>
-                <View>
+                <View style={styles.percentageHolder}>
                     <Text style={styles.percentage}>
                         {`${this.returnPercentage(totalCorrect, totalQuestions)}%`}
                     </Text>
@@ -75,13 +75,18 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 20,
   },
+  percentageHolder: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    borderWidth: 1,
+  },
   percentage: {
-      fontSize: 100,
-      color: '#0d0',
+      fontSize: 130,
+      color: '#000',
       textAlign: 'center',
   },
   resultBottom: {
-      marginTop: 100,
-
+      marginTop: 30,
   }
 })

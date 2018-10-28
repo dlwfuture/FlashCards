@@ -39,9 +39,10 @@ export function GetDeck(id) {
 export function AddDeck(title) {
     return (dispatch) => {
         saveDeckTitle(title)
-        .then(() => dispatch(
-            GetDecks()
-        ))
+        .then(() => {
+            dispatch(GetDeck(title))
+            dispatch(GetDecks()) 
+        })
         .catch(error => {
             console.warn(error)
         })

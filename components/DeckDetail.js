@@ -26,7 +26,7 @@ class DeckDetail extends React.Component {
           deck && (
             <View>
               <View style={styles.deckHeader}>
-                <Text style={styles.deckTitle}>{deck.title && deck.title}</Text>
+                <Text style={styles.deckTitle}>{deck && deck.title}</Text>
                 <Text style={styles.deckText}>{deck.questions && deck.questions.length} cards</Text>
               </View>
               <View style={styles.deckBottom}>
@@ -69,6 +69,9 @@ const styles = StyleSheet.create({
   deckBottom: {
     justifyContent: 'flex-start',
     height: (Dimensions.get('window').height / 3),
+    marginBottom: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   deckTitle: {
     color: 'black',
@@ -81,14 +84,13 @@ const styles = StyleSheet.create({
     fontSize: 25,
   },
   button: {
-    padding: 20,
-    margin: 10,
-    marginLeft: 60,
-    marginRight: 60,
+    width: Dimensions.get('window').width * 0.6,
+    height: 60,
     borderRadius: 5,
-    borderWidth: 2,
     justifyContent: 'center',
     alignItems: 'center',
+    marginBottom: 10,
+    borderWidth: 2,
   },
   buttonText: {
     fontSize: 20,

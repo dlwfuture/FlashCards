@@ -16,10 +16,12 @@ class DeckList extends React.Component {
   }
 
   render() {
+    const decks = this.props.decks ? Object.keys(this.props.decks) : null
+    const containsDeck = decks && decks.length
     return (
       <View style={styles.container}>
         {
-          this.props.decks && (
+          containsDeck && (
             <FlatList
               data={Object.keys(this.props.decks).map((id) => this.props.decks[id])}
               keyExtractor={(item, index) => index.toString()}
@@ -34,10 +36,7 @@ class DeckList extends React.Component {
                 )
               }
             />
-          )
-        }
-        {
-          !this.props.decks && (
+          ) || (
             <Text style={styles.noDataText}>
               No decks to show
             </Text>
