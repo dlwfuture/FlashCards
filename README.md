@@ -1,5 +1,5 @@
 ## FlashCards Project
-This is a project for React Nanodegree Course and was created using [create-react-nativa-app].
+This is a project for React Nanodegree Course and was created using [create-react-native-app].
 The application is related to FlashCards where you create questions, answers and try your knowledge in the Quiz.
 
 ## Building the Project
@@ -14,5 +14,4 @@ To easily build you need to prompt 2 commands:
 ## Todo
 * Cover testing in components
 
-#Should work on Android and IOS
-This application should work on Android, since it can't be tested at IOS.
+#This application should only be tested on Android, it will not work on iOS.
